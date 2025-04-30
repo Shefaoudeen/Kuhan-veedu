@@ -10,7 +10,7 @@ const OurStory = () => {
 
   useGSAP(() => {
     gsap.to(".story-title1", {
-      translateX: -10,
+      translateX: 0,
       duration: 0.8,
       ease: "linear",
       scrollTrigger: {
@@ -20,7 +20,7 @@ const OurStory = () => {
     });
 
     gsap.to(".story-title2", {
-      translateX: 10,
+      translateX: 0,
       duration: 0.8,
       ease: "linear",
       scrollTrigger: {
@@ -63,7 +63,7 @@ const OurStory = () => {
 
   return (
     <div id="storyblock">
-      <div className="h-screen flex max-md:min-h-screen max-md:flex-col gap-12 justify-center items-center bg-[#f5f5f5] sticky top-0">
+      <div className="h-screen flex max-md:min-h-screen -my-1 max-md:flex-col gap-12 justify-center items-center bg-[#f5f5f5] sticky top-0">
         <div id="story" className="md:w-[60%] max-md:px-8 flex flex-col gap-8">
           <div className="font-aboreto text-2xl text-center flex flex-col gap-4 md:hidden">
             <h1 className="story-title1">OUR STORY AND</h1>

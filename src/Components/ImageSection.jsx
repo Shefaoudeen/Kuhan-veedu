@@ -132,7 +132,7 @@ const ImageSection = () => {
         {/* Center - Title Section */}
         <div
           ref={titleRef}
-          className="flex flex-col items-center justify-center px-3 py-2 md:py-0 max-md:mt-10"
+          className="flex flex-col items-center justify-center px-3 py-2 md:py-0 "
         >
           <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl drop-shadow-lg font-aboreto text-center text-white max-w-[95%]">
             {imageSectionData[activeSlide].title}
@@ -170,7 +170,7 @@ const ImageSection = () => {
       {/* Call to Action */}
       <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-gradient-tb from-primaryBlack/50 to-primaryBlack">
         {" "}
-        <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
+        <span className="flex flex-col sm:flex-row ml-8 items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
           <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
           <a
             href="#connect"
