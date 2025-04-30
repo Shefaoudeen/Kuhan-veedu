@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import React, { useRef, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { goToContact } from "../utils";
 gsap.registerPlugin(ScrollTrigger);
 
 const flipContents = [
@@ -169,12 +170,12 @@ const DecoApproach = () => {
             </p> */}
             <div className="flex flex-col justify-center sm:flex-row items-center gap-3">
               <p className="text-sm sm:text-base md:text-lg">SETUP A CALL</p>
-              <a
-                href="#connect"
+              <button
+                onClick={() => goToContact()}
                 className="bg-black p-3 sm:p-4 rounded-full text-white group mt-2 sm:mt-0"
               >
                 <FaLongArrowAltRight className=" group-hover:rotate-90 duration-300 text-sm sm:text-base" />
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -45,3 +45,11 @@ export const preloadAssets = async () => {
 
     await Promise.all([...imagePromises, ...fontPromises]);
   };
+
+
+  export const goToContact = () => {
+    const contactSection = document.getElementById("connect");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }

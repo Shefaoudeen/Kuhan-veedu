@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { imageSectionData } from "../data";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { goToContact } from "../utils";
 
 const ImageSection = () => {
   const overlayRef = useRef(null);
@@ -94,7 +95,7 @@ const ImageSection = () => {
 
     return () => {
       mainTrigger?.kill();
-      // triggers.forEach(trigger => trigger.kill());
+      triggers.forEach(trigger => trigger.kill());
     };
   }, [isMobile]); // Re-run when screen size changes
 
@@ -184,12 +185,12 @@ const ImageSection = () => {
         {" "}
         <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
           <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
-          <a
-            href="#connect"
+          <button
+          onClick={() => goToContact()}
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"
           >
-            <FaLongArrowAltRight className="group-hover:translate-y-1 rotate-90 duration-300 text-sm sm:text-base" />
-          </a>
+            <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
+          </button>
         </span>
       </div>
     </div>
