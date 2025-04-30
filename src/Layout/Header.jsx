@@ -7,30 +7,12 @@ import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { gsap } from "gsap";
 
 const navLinks = [
-  {
-    title: "PORTFOLIO",
-    link: "#portfolio",
-  },
-  {
-    title: "STORY",
-    link: "#storyblock",
-  },
-  {
-    title: "SOLUTIONS",
-    link: "#solutions",
-  },
-  {
-    title: "VOICES",
-    link: "#voices",
-  },
-  {
-    title: "APPROACH",
-    link: "#approach",
-  },
-  {
-    title: "CONNECT",
-    link: "#connect",
-  },
+  { title: "PORTFOLIO", link: "#portfolio" },
+  { title: "STORY", link: "#storyblock" },
+  { title: "SOLUTIONS", link: "#solutions" },
+  { title: "VOICES", link: "#voices" },
+  { title: "APPROACH", link: "#approach" },
+  { title: "CONNECT", link: "#connect" },
 ];
 
 const Header = () => {
@@ -47,6 +29,7 @@ const Header = () => {
 
   useEffect(() => {
     if (menuClicked) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
       const tl = gsap.timeline();
 
       tl.fromTo(
@@ -68,27 +51,33 @@ const Header = () => {
           duration: 0.8,
           ease: "power2.out",
         },
-        "+=0.2" // small delay after last item
+        "+=0.2"
       );
+    } else {
+      document.body.style.overflow = "auto"; // Restore scrolling
     }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [menuClicked]);
 
   return (
     <div className="w-full p-5 flex justify-between absolute top-0 left-0 z-50 bg-transparent">
       {menuClicked && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black text-white z-[9999999] flex flex-col">
+        <div className="fixed top-0 left-0 w-screen h-screen bg-black text-white z-[9999999] flex flex-col transition-opacity duration-300">
           <div className="flex justify-between items-center p-5">
-            <a href="">
+            <a href="#">
               <img src={DeCoLogo} alt="Logo" className="w-[80px] invert" />
             </a>
             <X
               size={30}
-              className="text-white hover:scale-110 transition"
+              className="text-white hover:scale-110 transition cursor-pointer"
               onClick={() => setMenuClicked(false)}
             />
           </div>
 
-          <div className="flex flex-1 md:px-32 py-8  max-md:px-8">
+          <div className="flex flex-1 md:px-32 py-8 max-md:px-8">
             <div className="text-5xl font-aboreto max-md:text-3xl">
               <ul className="flex flex-col h-full justify-around text-gray-900 max-md:pb-10">
                 {navLinks.map((item, index) => (
@@ -96,7 +85,7 @@ const Header = () => {
                     <a
                       href={item.link}
                       onClick={() => setMenuClicked(false)}
-                      className="text-white/60 cursor-none hover:text-white transition-colors duration-300 ease-in-out"
+                      className="text-white/60 hover:text-white transition-colors duration-300 ease-in-out"
                     >
                       {item.title}
                     </a>
@@ -120,16 +109,16 @@ const Header = () => {
                 </div>
                 <div className="flex gap-4 text-gray-400 w-full justify-between px-8">
                   <FiShare2
-                    className="text-gray-400 cursor-none hover:text-white transition-colors duration-300"
+                    className="cursor-pointer hover:text-white transition-colors duration-300"
                     size={24}
                   />
                   <FaLinkedin
                     size={24}
-                    className="cursor-none hover:text-white transition-colors duration-300"
+                    className="cursor-pointer hover:text-white transition-colors duration-300"
                   />
                   <FaWhatsapp
                     size={24}
-                    className="cursor-none hover:text-white transition-colors duration-300"
+                    className="cursor-pointer hover:text-white transition-colors duration-300"
                   />
                 </div>
               </div>
@@ -143,13 +132,21 @@ const Header = () => {
         <img src={DeCoLogo} alt="Logo" className="w-[80px]" />
       </div>
       <div className="flex items-center gap-8 text-lg font-lato">
-        <div className="max-md:hidden">CONTACT</div>
-        <div onClick={() => setMenuClicked(true)} className="max-md:hidden">
+        <div
+          className="max-md:hidden cursor-pointer"
+          onClick={() => setMenuClicked(true)}
+        >
+          CONTACT
+        </div>
+        <div
+          className="max-md:hidden cursor-pointer"
+          onClick={() => setMenuClicked(true)}
+        >
           MENU
         </div>
         <MdMenu
           onClick={() => setMenuClicked(true)}
-          className="hover:scale-150 duration-200 ease-linear"
+          className="hover:scale-150 duration-200 ease-linear cursor-pointer"
         />
       </div>
     </div>
