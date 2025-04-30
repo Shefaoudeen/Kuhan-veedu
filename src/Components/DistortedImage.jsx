@@ -79,7 +79,11 @@ const DistortedImage = ({ image }) => {
         },
       };
 
-      planeRef.current = new Plane(curtainsRef.current, containerRef.current, params);
+      planeRef.current = new Plane(
+        curtainsRef.current,
+        containerRef.current,
+        params
+      );
 
       // Set up onReady callback to handle when the plane is ready
       planeRef.current.onReady(() => {
@@ -131,7 +135,8 @@ const DistortedImage = ({ image }) => {
 
   // Animation loop
   const animate = useCallback(() => {
-    scrollEffect.current += (targetScrollEffect.current - scrollEffect.current) * 0.08;
+    scrollEffect.current +=
+      (targetScrollEffect.current - scrollEffect.current) * 0.08;
 
     if (planeRef.current?.uniforms?.uScrollEffect) {
       planeRef.current.uniforms.uScrollEffect.value = scrollEffect.current;
@@ -144,7 +149,10 @@ const DistortedImage = ({ image }) => {
       curtainsRef.current.needRender();
     }
 
-    if (Math.abs(scrollEffect.current) > 0.001 || Math.abs(targetScrollEffect.current) > 0.001) {
+    if (
+      Math.abs(scrollEffect.current) > 0.001 ||
+      Math.abs(targetScrollEffect.current) > 0.001
+    ) {
       rafID.current = requestAnimationFrame(animate);
     } else {
       rafID.current = null;
@@ -157,7 +165,11 @@ const DistortedImage = ({ image }) => {
   }, []);
 
   const manageAnimation = useCallback(() => {
-    if (!rafID.current && (Math.abs(scrollEffect.current) > 0.001 || Math.abs(targetScrollEffect.current) > 0.001)) {
+    if (
+      !rafID.current &&
+      (Math.abs(scrollEffect.current) > 0.001 ||
+        Math.abs(targetScrollEffect.current) > 0.001)
+    ) {
       rafID.current = requestAnimationFrame(animate);
     }
   }, [animate]);
@@ -198,7 +210,7 @@ const DistortedImage = ({ image }) => {
       containerRef.current,
       { scale: 0.8 },
       {
-        scale: 1.2,
+        scale: 1.6,
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top bottom",
@@ -209,7 +221,6 @@ const DistortedImage = ({ image }) => {
       }
     );
   }, []);
-
 
   return (
     <div className="md:py-[250px] max-w-[88vw] relative overflow-hidden left-8 top-5 md:top-0 -rotate-12 md:left-20">
@@ -223,7 +234,7 @@ const DistortedImage = ({ image }) => {
           perspective: "1200px",
           transformStyle: "preserve-3d",
         }}
-        className="h-[35vh] sm:h-[50vh] md:w-[60vw] md:h-[400px] flex items-center justify-center"
+        className="h-[35vh] sm:h-[50vh] md:w-[60vw] md:h-[200px] flex items-center justify-center"
       >
         <img
           src={image}
@@ -243,7 +254,7 @@ const DistortedImage = ({ image }) => {
             left: `${mousePosRef.current.x + 10}px`,
             top: `${mousePosRef.current.y}px`,
             opacity: 0,
-            transform: "translate(10px, -50%)" // Position to the right with 10px gap, vertical center alignment
+            transform: "translate(10px, -50%)", // Position to the right with 10px gap, vertical center alignment
           }}
         >
           <span className="text-white font-semibold text-sm whitespace-nowrap">
@@ -264,6 +275,5 @@ const DistortedImage = ({ image }) => {
     </div>
   );
 };
-
 
 export default DistortedImage;

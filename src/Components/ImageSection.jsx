@@ -20,15 +20,15 @@ const ImageSection = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     // Initial check
     checkMobile();
-    
+
     // Add resize listener
-    window.addEventListener('resize', checkMobile);
-    
+    window.addEventListener("resize", checkMobile);
+
     // Cleanup
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // GSAP animations
@@ -177,7 +177,8 @@ const ImageSection = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-primaryBlack">
+      <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-gradient-tb from-primaryBlack/50 to-primaryBlack">
+        {" "}
         <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
           <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
           <a

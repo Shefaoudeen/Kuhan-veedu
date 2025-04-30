@@ -78,7 +78,9 @@ const Header = () => {
       {menuClicked && (
         <div className="fixed top-0 left-0 w-screen h-screen bg-black text-white z-[9999999] flex flex-col">
           <div className="flex justify-between items-center p-5">
-            <img src={DeCoLogo} alt="Logo" className="w-[80px] invert" />
+            <a href="">
+              <img src={DeCoLogo} alt="Logo" className="w-[80px] invert" />
+            </a>
             <X
               size={30}
               className="text-white hover:scale-110 transition"

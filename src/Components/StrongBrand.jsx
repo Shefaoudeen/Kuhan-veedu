@@ -26,7 +26,7 @@ const StrongBrand = () => {
   });
 
   return (
-    <div className="md:h-screen overflow-hidden max-md:py-8 relative flex gap-12 font-a text-white justify-center items-center bg-primaryBlack md:mt-[25vh] max-md:mt-[40dvh] max-md:h-[100dvh]">
+    <div className="md:h-screen overflow-hidden max-md:py-8 relative flex gap-12 font-a text-white justify-center items-center bg-primaryBlack md:mt-[130vh] max-md:mt-[40dvh] max-md:h-[100dvh]">
       <div
         id="brand-text"
         className="text-center text-5xl font-aboreto flex flex-col gap-8 z-50 max-md:text-xl max-md:px-8"

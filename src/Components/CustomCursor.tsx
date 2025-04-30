@@ -68,8 +68,8 @@ export default function MinimalCustomCursor() {
     <motion.div
       className="max-md:hidden"
       style={{
-        width: 35,
-        height: 35,
+        width: 18,
+        height: 18,
         borderRadius: "50%",
         backgroundColor: "#fff",
         mixBlendMode: "difference",

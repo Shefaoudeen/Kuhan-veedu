@@ -9,29 +9,56 @@ const OurStory = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    const story = gsap.timeline({
+    gsap.to(".story-title1", {
+      translateX: -10,
+      duration: 0.8,
+      ease: "linear",
       scrollTrigger: {
-        trigger: "#story",
-        start: "bottom-=300 bottom",
-        toggleActions: "play none none none",
+        trigger: "#storyblock",
+        start: "top center",
       },
     });
 
-    story
-      .to(".story-title1", { translateX: -10, duration: 0.5 })
-      .to(".story-title2", { translateX: 10, duration: 0.5 })
-      .from("#storyTitle", { y: 30, opacity: 0, duration: 0.5 })
-      .from("#storydescription", { y: 30, opacity: 0, duration: 0.5 });
+    gsap.to(".story-title2", {
+      translateX: 10,
+      duration: 0.8,
+      ease: "linear",
+      scrollTrigger: {
+        trigger: "#storyblock",
+        start: "top center",
+      },
+    });
 
-    // Parallax animation for vertical text
+    gsap.to("#storyTitle", {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "linear",
+      scrollTrigger: {
+        trigger: "#storyTitle",
+        start: "top center",
+      },
+    });
+
+    gsap.to("#storydescription", {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "linear",
+      scrollTrigger: {
+        trigger: "#storydescription",
+        start: "top center",
+      },
+    });
+
     gsap.to("#verticalText", {
-      y: -100,
+      y: 0,
+      duration: 0.8,
       ease: "none",
       scrollTrigger: {
         trigger: "#story",
         start: "top bottom",
         end: "bottom top",
-        scrub: true,
       },
     });
   });
@@ -46,7 +73,7 @@ const OurStory = () => {
           </div>
           <h1
             id="storyTitle"
-            className="font-semibold text-4xl leading-[150%] font-lato max-md:text-xl"
+            className="font-semibold text-4xl leading-[150%] font-lato max-md:text-xl -translate-y-16 opacity-0"
           >
             HOW DOES DECO DRIVE
             <span className="max-md:hidden">
@@ -56,7 +83,7 @@ const OurStory = () => {
           </h1>
           <p
             id="storydescription"
-            className="font-garet text-justify md:pr-20 text-lg max-md:text-sm"
+            className="font-garet text-justify md:pr-20 text-lg max-md:text-sm -translate-y-16 opacity-0"
           >
             No fluff, no exaggeration — At Deco, we blend design, code, and
             innovation to craft seamless, high—performance digital experiences.
@@ -80,7 +107,7 @@ const OurStory = () => {
         <div
           id="verticalText"
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="font-aboreto text-7xl text-end flex flex-col gap-8 max-md:hidden"
+          className="font-aboreto text-7xl text-end flex flex-col gap-8 max-md:hidden -translate-y-28"
         >
           <h1>OUR STORY AND</h1>
           <h1>WHAT WE DO</h1>
