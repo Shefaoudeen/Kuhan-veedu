@@ -60,7 +60,7 @@ const Hero = () => {
       </AnimatePresence>
 
       {/* Hero Text Content */}
-      <div className="z-50 flex flex-col items-center mt-10 max-md:gap-2 max-md:mb-[30vh]">
+      <div className=" flex flex-col items-center mt-10 max-md:gap-2 max-md:mb-[30vh]">
         <h1 className="font-aboreto  text-8xl max-md:text-2xl">
           INNOVATING AT THE
         </h1>

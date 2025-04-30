@@ -7,13 +7,34 @@ import {
   Share2,
   Mail,
 } from "lucide-react";
+import { FiShare2 } from "react-icons/fi";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { TextHoverEffect } from "../Components/ui/text-hover-effect";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+const handleCopyToClipboard = (setMessageVisible) => {
+  const url = "https://teamdeco.in/";
+
+  navigator.clipboard
+    .writeText(url)
+    .then(() => {
+      // Show custom success message
+      setMessageVisible(true);
+      // Hide the message after 2 seconds
+      setTimeout(() => {
+        setMessageVisible(false);
+      }, 1000);
+    })
+    .catch((err) => {
+      console.error("Error copying text to clipboard", err);
+    });
+};
+
 const Footer = () => {
+  const [messageVisible, setMessageVisible] = useState(false); // Track visibility of custom message
+
   const [num1, setNum1] = useState(Math.floor(Math.random() * 10) + 1);
   const [num2, setNum2] = useState(Math.floor(Math.random() * 10) + 1);
   const [userAnswer, setUserAnswer] = useState(null);
@@ -51,53 +72,49 @@ const Footer = () => {
     }
   };
 
-  const scrollToPortfolio = () => {
-    const portfolioSection = document.getElementById("portfolio");
-    if (!portfolioSection) return;
+  const overlayRef = useRef();
 
-    const targetPosition =
-      portfolioSection.getBoundingClientRect().top + window.pageYOffset;
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    const duration = 1000; // 2 seconds
-    let startTime = null;
-
-    const easeInOutQuad = (t) => {
-      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    };
-
-    const animation = (currentTime) => {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run =
-        easeInOutQuad(timeElapsed / duration) * distance + startPosition;
-      window.scrollTo(0, run);
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      } else {
-        window.scrollTo(0, targetPosition); // Ensure it ends exactly at the target
-      }
-    };
-
-    requestAnimationFrame(animation);
+  const scrollToTopWithOverlay = () => {
+    gsap.to(overlayRef.current, {
+      y: 0,
+      duration: 2,
+      ease: "power2.inOut",
+      onComplete: () => {
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: "auto" });
+            gsap.to(overlayRef.current, {
+              y: "-100%",
+              duration: 0.7,
+              delay: 0.2,
+              ease: "power2.inOut",
+              onComplete: () => {
+                gsap.set(overlayRef.current, { y: "100%" });
+              },
+            });
+          }, 200);
+        });
+      },
+    });
   };
 
   useGSAP(() => {
-    gsap.to(
-      "#main-text",
-      {
-        y: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: "#main-text",
-          start: "top bottom",
-        },
-      }
-    );
+    gsap.to("#main-text", {
+      y: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: "#main-text",
+        start: "top bottom",
+      },
+    });
   }, []);
 
   return (
     <div className="flex w-screen justify-center items-center bg-[#070707] text-white mt-10">
+      <div
+        ref={overlayRef}
+        className="fixed top-0 left-0 w-full h-screen bg-black z-[9999] translate-y-full"
+      ></div>
       <div className="flex flex-col w-[80%] justify-center items-center">
         <div className="flex flex-col w-full justify-center items-center md:h-[125vh] gap-16">
           <div
@@ -201,19 +218,23 @@ const Footer = () => {
             <div className="flex flex-col w-full justify-center items-center font-lato max-md:hidden">
               <div className="flex w-full justify-between items-center">
                 <div className="flex flex-col justify-center items-center">
-                  <MapPin size={24} color="#ffffff" fill="#ffffff" />
-                  <h1>
+                  <MapPin size={24} color="#ffffff" />
+                  <h1 className="mt-2">
                     Puducherry
                     <br />
                     Bangalore
                   </h1>
                 </div>
                 <div className="text-5xl font-semibold ml-10">
-                  reachdeco@gmail.com
+                  reachus@teamdeco.in
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <Phone size={24} color="#ffffff" fill="#ffffff" />
-                  <h1>+91 99999 88888</h1>
+                  <Phone size={24} color="#ffffff" />
+                  <h1 className="mt-2">
+                    +91 88254 60719
+                    <br />
+                    +91 84387 16946
+                  </h1>
                 </div>
               </div>
             </div>
@@ -239,13 +260,16 @@ const Footer = () => {
             <TextHoverEffect text="DeCo" />
           </div>
           <div className="flex w-full font-garet md:justify-between py-5">
-            <div className="flex items-center gap-4 max-md:hidden">
-              <div onClick={scrollToPortfolio} className="cursor-none">
+            <div className="flex gap-4 items-center">
+              <div onClick={scrollToTopWithOverlay} className="cursor-pointer">
                 <div className="border hover:border-slate-500 rounded-full">
                   <ChevronUp />
                 </div>
               </div>
-              <div onClick={scrollToPortfolio} className="cursor-none">
+              <div
+                onClick={scrollToTopWithOverlay}
+                className="cursor-pointer text-sm text-muted-foreground hover:underline"
+              >
                 Back Top
               </div>
             </div>
@@ -254,18 +278,38 @@ const Footer = () => {
             </div>
             <div className="flex gap-4 max-md:hidden">
               <div>
-                <Share2 size={24} />
+                <FiShare2
+                  className="hover:text-white transition cursor-pointer"
+                  size={24}
+                  onClick={() => handleCopyToClipboard(setMessageVisible)}
+                />
               </div>
-              <div>
-                <FaLinkedin className="text-white" size={24} />
-              </div>
-              <div>
-                <FaWhatsapp className="text-white" size={24} />
-              </div>
+              <a
+                href="https://www.linkedin.com/in/team-deco"
+                target="_blank"
+                className="cursor-pointer"
+              >
+                <FaLinkedin className="hover:text-white transition" size={24} />
+              </a>
+              <a
+                className="cursor-pointer"
+                href="https://wa.me/+918825460719?text=Hello%2C%20What%20Services%20You%20Offer"
+                target="_blank"
+              >
+                <FaWhatsapp className="hover:text-white transition" size={24} />
+              </a>
             </div>
           </div>
         </div>
       </div>
+      {/* Custom Message Modal */}
+      {messageVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white text-center p-5 rounded-full shadow-lg text-xl">
+            <p className="text-black font-lato">URL copied to clipboard!</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
