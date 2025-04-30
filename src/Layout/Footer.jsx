@@ -80,9 +80,6 @@ const Footer = () => {
     };
 
     requestAnimationFrame(animation);
-
-    
-    
   };
 
   useGSAP(() => {
@@ -102,8 +99,11 @@ const Footer = () => {
   return (
     <div className="flex w-screen justify-center items-center bg-[#070707] text-white mt-10">
       <div className="flex flex-col w-[80%] justify-center items-center">
-        <div className="flex flex-col w-full justify-center items-center h-screen gap-16">
-          <div id="main-text" className="text-6xl text-center  -translate-y-16 font-aboreto flex flex-col gap-4 max-md:text-xl">
+        <div className="flex flex-col w-full justify-center items-center md:h-[125vh] gap-16">
+          <div
+            id="main-text"
+            className="text-6xl text-center  -translate-y-16 font-aboreto flex flex-col gap-4 max-md:text-xl"
+          >
             <h1>Not yet convinced?</h1>
             <h1>Let's Talk</h1>
           </div>
@@ -121,7 +121,7 @@ const Footer = () => {
                   />
                   <label
                     htmlFor="charming-name"
-                    className="absolute left-2 -top-2 text-sm text-black bg-black/90 px-1 transition-all duration-200 peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#f5f5f5] peer-focus:-top-2 peer-focus:text-sm peer-focus:text-white"
+                    className="absolute left-2 -top-2 text-sm text-gray-400 bg-black px-1 transition-all duration-200 peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#f5f5f5] peer-focus:-top-2 peer-focus:text-sm peer-focus:text-white"
                   >
                     Your charming name
                   </label>
@@ -179,7 +179,9 @@ const Footer = () => {
                   {isCorrect}
                 </div>
               </div>
-              <div className="min-w-[250px] text-center -mt-8">{isCorrect}</div>
+              <div className="min-w-[250px] text-center -mt-8 md:hidden">
+                {isCorrect}
+              </div>
               <div className="flex justify-center">
                 <button className="bg-white text-black font-semibold px-10 py-2 rounded-full">
                   Send Mail
@@ -200,9 +202,13 @@ const Footer = () => {
               <div className="flex w-full justify-between items-center">
                 <div className="flex flex-col justify-center items-center">
                   <MapPin size={24} color="#ffffff" fill="#ffffff" />
-                  <h1>Puducherry</h1>
+                  <h1>
+                    Puducherry
+                    <br />
+                    Bangalore
+                  </h1>
                 </div>
-                <div className="text-3xl font-semibold ml-10">
+                <div className="text-5xl font-semibold ml-10">
                   reachdeco@gmail.com
                 </div>
                 <div className="flex flex-col justify-center items-center">

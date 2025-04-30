@@ -83,7 +83,6 @@ const ImageSection = () => {
 
     return () => {
       mainTrigger?.kill();
-
     };
   }, [isMobile]); // Re-run when screen size changes
 
@@ -98,27 +97,23 @@ const ImageSection = () => {
         opacity: 0,
         filter: "blur(5px)",
         duration: 0.5,
-      })
-        .to(
-          titleRef.current,
-          {
-            delay: 0.5,
-            opacity: 1,
-            filter: "blur(0px)",
-            duration: 0.8,
-          }
-        );
+      }).to(titleRef.current, {
+        delay: 0.5,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.8,
+      });
     } else {
       titleRef.current.setAttribute("data-initialized", "true");
     }
   }, [activeSlide, isReady]);
 
   return (
-    <div ref={sectionRef} className="relative bg-primaryBlack" id="solutions">
+    <div ref={sectionRef} className="relative bg-primaryBlack " id="solutions">
       <div
         ref={overlayRef}
-        className="fixed inset-0 flex flex-col md:flex-row items-center justify-between w-full px-4 py-6 md:py-10 md:p-0 z-[5] pointer-events-none"
-      // Both reduced z-index and explicitly disable pointer events
+        className="fixed inset-0 flex flex-col md:flex-row  items-center justify-between w-full px-4 py-6 md:py-10 md:p-0 z-[5] pointer-events-none"
+        // Both reduced z-index and explicitly disable pointer events
       >
         {/* Left Side - Slide Counter */}
         <div
