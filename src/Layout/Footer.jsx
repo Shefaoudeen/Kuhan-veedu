@@ -11,6 +11,7 @@ import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import React, { useState } from "react";
 import { TextHoverEffect } from "../Components/ui/text-hover-effect";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Footer = () => {
   const [num1, setNum1] = useState(Math.floor(Math.random() * 10) + 1);
@@ -80,30 +81,30 @@ const Footer = () => {
 
     requestAnimationFrame(animation);
 
-    useGSAP(() => {
-      gsap.fromTo(
-        "#main-text",
-        { y: -20},
-        {
-          y: 0,
-          duration: 1,
-          scrollTrigger: {
-            trigger: "#main-text",
-            start: "top bottom",
-            markers: true,
-          },
-          ease: "power2.out"
-        }
-      );
-    }, []);
+    
     
   };
+
+  useGSAP(() => {
+    gsap.to(
+      "#main-text",
+      {
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: "#main-text",
+          start: "top bottom",
+          markers: true,
+        },
+      }
+    );
+  }, []);
 
   return (
     <div className="flex w-screen justify-center items-center bg-[#070707] text-white mt-10">
       <div className="flex flex-col w-[80%] justify-center items-center">
         <div className="flex flex-col w-full justify-center items-center h-screen gap-16">
-          <div id="main-text" className="text-6xl text-center font-aboreto flex flex-col gap-4 max-md:text-xl">
+          <div id="main-text" className="text-6xl text-center  -translate-y-16 font-aboreto flex flex-col gap-4 max-md:text-xl">
             <h1>Not yet convinced?</h1>
             <h1>Let's Talk</h1>
           </div>
