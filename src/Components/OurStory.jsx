@@ -51,14 +51,14 @@ const OurStory = () => {
       },
     });
 
-    gsap.to("#verticalText", {
-      y: 0,
-      duration: 0.8,
+    gsap.from("#verticalText", {
+      y: 100,
       ease: "none",
       scrollTrigger: {
         trigger: "#story",
         start: "top bottom",
         end: "bottom top",
+        scrub: true,
       },
     });
   });
@@ -107,7 +107,7 @@ const OurStory = () => {
         <div
           id="verticalText"
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="font-aboreto text-7xl text-end flex flex-col gap-8 max-md:hidden -translate-y-28"
+          className="font-aboreto text-6xl text-end flex flex-col gap-8 max-md:hidden -translate-y-28"
         >
           <h1>OUR STORY AND</h1>
           <h1>WHAT WE DO</h1>
