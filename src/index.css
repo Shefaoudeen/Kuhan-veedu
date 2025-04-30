@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Aboreto";
+  src: url("/fonts/Aboreto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/fonnts.com-garet-book.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.text-outline {
+  text-shadow: -1px -1px 0 #525252, 1px -1px 0 #525252, -1px 1px 0 #525252,
+    1px 1px 0 #525252;
+}
+  .text-outline {
+    text-shadow: -1px -1px 0 #525252, 1px -1px 0 #525252, -1px 1px 0 #525252, 1px 1px 0 #525252;
+  }
+
+  .text-outline-small {
+    text-shadow: -0.75px -1px 0 #525252, 0.75px -0.75px 0 #525252, -0.75px 0.75px 0 #525252, 0.75px 0.75px 0 #525252;
+  }
+
+  
+
