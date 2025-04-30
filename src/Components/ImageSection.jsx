@@ -40,7 +40,7 @@ const ImageSection = () => {
     const mainTrigger = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: isMobile ? 'top 90%' : '+=400 bottom',
-      end: isMobile ? 'bottom+=50% top' : 'bottom-=200 bottom',
+      end: isMobile ? 'bottom+=100% top' : 'bottom-=200 bottom',
 
 
       // markers: true,
@@ -83,7 +83,7 @@ const ImageSection = () => {
           (isLastSlide ? "top 80%" : "top 70%") : 
           "top 60%",
         end: isMobile ? 
-          (isLastSlide ? "bottom 20%" : "bottom 30%") : 
+          (isLastSlide ? "bottom top" : "bottom 30%") : 
           "bottom 40%",
         onEnter: () => setActiveSlide(index),
         onEnterBack: () => setActiveSlide(index),
@@ -181,9 +181,9 @@ const ImageSection = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-gradient-tb from-primaryBlack/50 to-primaryBlack">
+      <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center">
         {" "}
-        <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
+        <span className="z-50 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
           <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
           <button
           onClick={() => goToContact()}
