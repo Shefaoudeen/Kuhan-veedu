@@ -132,7 +132,7 @@ const ImageSection = () => {
         {/* Center - Title Section */}
         <div
           ref={titleRef}
-          className="flex flex-col items-center justify-center px-3 py-2 md:py-0"
+          className="flex flex-col items-center justify-center px-3 py-2 md:py-0 max-md:mt-10"
         >
           <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl drop-shadow-lg font-aboreto text-center text-white max-w-[95%]">
             {imageSectionData[activeSlide].title}
@@ -160,7 +160,7 @@ const ImageSection = () => {
           <div
             id={`slide-${index}`}
             key={index}
-            className="min-h-[50vh] sm:min-h-[60vh] flex flex-col justify-center md:min-h-screen mb-12 md:mb-32 overflow-x-hidden"
+            className="min-h-[50vh] sm:min-h-[50vh] flex flex-col justify-center md:min-h-screen mb-12 md:mb-32 overflow-x-hidden"
           >
             <DistortedImage image={section.image} />
           </div>

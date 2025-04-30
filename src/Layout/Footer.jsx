@@ -13,6 +13,7 @@ import React, { useState, useRef } from "react";
 import { TextHoverEffect } from "../Components/ui/text-hover-effect";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { HalfLogo } from "../assets";
 
 const handleCopyToClipboard = (setMessageVisible) => {
   const url = "https://teamdeco.in/";
@@ -115,7 +116,7 @@ const Footer = () => {
         ref={overlayRef}
         className="fixed top-0 left-0 w-full h-screen bg-black z-[9999] translate-y-full"
       ></div>
-      <div className="flex flex-col w-[80%] justify-center items-center">
+      <div className="flex flex-col md:w-[80%] max-md:w-[90%] justify-center items-center">
         <div className="flex flex-col w-full justify-center items-center md:h-[125vh] gap-16">
           <div
             id="main-text"
@@ -171,7 +172,7 @@ const Footer = () => {
                 />
                 <label
                   htmlFor="project-details"
-                  className="absolute left-2 -top-2 text-sm max-md:text-xs text-gray-400 bg-black px-1 transition-all duration-200 peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#f5f5f5] peer-focus:-top-2 peer-focus:text-sm  peer-focus:text-white"
+                  className="absolute left-2 -top-2  text-sm  text-gray-400 bg-black px-1 transition-all duration-200 peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-[#f5f5f5] peer-focus:-top-2 peer-focus:text-sm  peer-focus:text-white"
                 >
                   We'd love to hear more about your project
                 </label>
@@ -239,27 +240,30 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex flex-col w-screen  font-lato flex-1 md:hidden">
-              <div className="flex w-full items-start  flex-col gap-8 p-12">
+              <div className="flex w-full items-start  flex-col gap-8 p-12 text-sm">
                 <div className="flex  justify-center gap-4 items-center">
                   <MapPin size={24} color="#ffffff" />
-                  <h1>Puducherry</h1>
+                  <h1>Puducherry / Bangalore</h1>
                 </div>
                 <div className="flex  justify-center gap-4 items-center">
                   <Mail size={24} color="#ffffff" />
-                  reachdeco@gmail.com
+                  reachus@teamdeco.in
                 </div>
                 <div className="flex  justify-center items-center gap-4">
                   <Phone size={24} color="#ffffff" />
-                  <h1>+91 99999 88888</h1>
+                  <h1>+91 88254 60719 / +91 84387 16946</h1>
                 </div>
               </div>
+            </div>
+            <div className="md:hidden">
+              <img src={HalfLogo} alt="" />
             </div>
           </div>
 
           <div className="w-full max-md:hidden">
             <TextHoverEffect text="DeCo" />
           </div>
-          <div className="flex w-full font-garet md:justify-between py-5">
+          <div className="flex w-full font-garet md:justify-between py-5 items-center max-md:justify-around">
             <div className="flex gap-4 items-center">
               <div onClick={scrollToTopWithOverlay} className="cursor-pointer">
                 <div className="border hover:border-slate-500 rounded-full">
@@ -268,12 +272,12 @@ const Footer = () => {
               </div>
               <div
                 onClick={scrollToTopWithOverlay}
-                className="cursor-pointer text-sm text-muted-foreground hover:underline"
+                className="cursor-pointer text-sm text-muted-foreground hover:underline max-md:hidden"
               >
                 Back Top
               </div>
             </div>
-            <div className="text-center">
+            <div className="md:text-center max-md:text-sm">
               2025 © DeCo. All rights resevered.
             </div>
             <div className="flex gap-4 max-md:hidden">

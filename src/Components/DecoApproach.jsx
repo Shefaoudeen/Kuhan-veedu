@@ -101,7 +101,7 @@ const DecoApproach = () => {
     <div
       id="approach"
       ref={mainRef}
-      className="overflow-hidden md:overflow-auto relative w-screen md:px-5 lg:px-20 flex md:mt-0 bg-white"
+      className="overflow-hidden md:overflow-auto relative w-screen h-screen md:px-5 lg:px-20 flex md:mt-0 bg-white"
     >
       <div className="relative z-10 h-screen w-screen flex items-center justify-between">
         <h2

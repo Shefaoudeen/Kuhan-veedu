@@ -143,7 +143,7 @@ const Header = () => {
         {menuClicked && (
           <div className="fixed top-0 left-0 w-full h-full bg-black text-white z-[999999] flex flex-col">
             <div className="flex justify-between items-center p-5">
-              <a href="#">
+              <a href="http://teamdeco.in/">
                 <img src={DeCoLogo} alt="Logo" className="w-[80px] invert" />
               </a>
               <X
@@ -220,12 +220,14 @@ const Header = () => {
 
         {/* Top Bar */}
         <div>
-          <img src={DeCoLogo} alt="Logo" className="w-[80px]" />
+          <a href="http://teamdeco.in/">
+            <img src={DeCoLogo} alt="Logo" className="w-[80px]" />
+          </a>
         </div>
         <div className="flex items-center gap-8 text-lg font-lato">
           <div
             className="max-md:hidden cursor-pointer"
-            onClick={() => setMenuClicked(true)}
+            onClick={(e) => handleNavClick(e, "#connect")}
           >
             CONTACT
           </div>
