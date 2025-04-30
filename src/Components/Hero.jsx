@@ -60,7 +60,7 @@ const Hero = () => {
       </AnimatePresence>
 
       {/* Hero Text Content */}
-      <div className="relative z-10 flex flex-col bg-transparent items-center mt-10 max-md:gap-2 max-md:mb-[30vh]">
+      <div className="relative md:z-10 flex flex-col bg-transparent items-center mt-10 max-md:gap-2 max-md:mb-[30vh]">
         <h1 className="font-aboreto  text-8xl max-md:text-2xl">
           INNOVATING AT THE
         </h1>
@@ -86,7 +86,7 @@ const Hero = () => {
       {/* Vanta Globe */}
       <div
         ref={vantaRef}
-        className="absolute md:top-0 max-md:z-20 max-md:bottom-0 left-0 w-full h-screen max-md:max-h-[50dvh] z-0 opacity-25 pointer-events-none"
+        className="absolute md:top-0 max-md:z-20 max-md:bottom-0 left-0 w-full h-screen max-md:max-h-[100dvh] max-md:scale-x-[-1] max-md:rotate-[180deg]  opacity-25 pointer-events-none"
       />
     </div>
   );
