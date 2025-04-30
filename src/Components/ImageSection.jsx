@@ -38,8 +38,9 @@ const ImageSection = () => {
 
     const mainTrigger = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: "+=200 bottom",
-      end: "bottom bottom",
+      start: "+=400 bottom",
+      end: "bottom-=400 bottom",
+
       markers: true,
       onEnter: () =>
         gsap.to(overlayRef.current, {
@@ -49,7 +50,7 @@ const ImageSection = () => {
       onLeave: () =>
         gsap.to(overlayRef.current, {
           autoAlpha: 0,
-          duration: 0,
+          duration: 0.5,
         }),
       onEnterBack: () =>
         gsap.to(overlayRef.current, {
@@ -59,7 +60,7 @@ const ImageSection = () => {
       onLeaveBack: () =>
         gsap.to(overlayRef.current, {
           autoAlpha: 0,
-          duration: 0,
+          duration: 0.5,
         }),
       onRefresh: (self) => {
         const visible = self.isActive;
@@ -84,6 +85,7 @@ const ImageSection = () => {
 
     return () => {
       mainTrigger?.kill();
+
     };
   }, [isMobile]); // Re-run when screen size changes
 
@@ -94,24 +96,20 @@ const ImageSection = () => {
     const tl = gsap.timeline();
 
     if (titleRef.current.getAttribute("data-initialized") === "true") {
-      tl.to(titleRef.current, {
+      tl.set(titleRef.current, {
         opacity: 0,
         filter: "blur(5px)",
-        duration: 0.1,
-        ease: "power2.out",
-      }).fromTo(
-        titleRef.current,
-        {
-          opacity: 0,
-          filter: "blur(5px)",
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          duration: 0.2,
-          ease: "none",
-        }
-      );
+        duration: 0.5,
+      })
+        .to(
+          titleRef.current,
+          {
+            delay: 0.5,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.8,
+          }
+        );
     } else {
       titleRef.current.setAttribute("data-initialized", "true");
     }
@@ -122,7 +120,7 @@ const ImageSection = () => {
       <div
         ref={overlayRef}
         className="fixed inset-0 flex flex-col md:flex-row items-center justify-between w-full px-4 py-6 md:py-10 md:p-0 z-[5] pointer-events-none"
-        // Both reduced z-index and explicitly disable pointer events
+      // Both reduced z-index and explicitly disable pointer events
       >
         {/* Left Side - Slide Counter */}
         <div
@@ -185,7 +183,7 @@ const ImageSection = () => {
             href="#connect"
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"
           >
-            <FaLongArrowAltRight className="group-hover:translate-x-1 duration-300 text-sm sm:text-base" />
+            <FaLongArrowAltRight className="group-hover:translate-y-1 rotate-90 duration-300 text-sm sm:text-base" />
           </a>
         </span>
       </div>

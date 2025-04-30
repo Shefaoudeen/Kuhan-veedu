@@ -44,7 +44,7 @@ const Hero = () => {
   return (
     <div
       id="portfolio"
-      className="relative min-h-screen max-md:py-[20vh] max-md:gap-[20vh] overflow-hidden bg-[#f5f5f5] flex flex-col justify-center items-center"
+      className="relative min-h-screen max-md:py-[20vh] max-md:gap-[20vh] overflow-hidden bg-[#f5f5f5] flex flex-col justify-center items-center select-none"
     >
       {/* Black Overlay */}
       <AnimatePresence>
