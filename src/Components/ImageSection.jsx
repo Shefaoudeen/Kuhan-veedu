@@ -122,7 +122,7 @@ const ImageSection = () => {
             lineHeight: "1",
             letterSpacing: "0.1em",
           }}
-          className="text-xl text-white opacity-50 sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy font-bold rotate-180 md:px-8 flex justify-start md:justify-center w-full md:w-auto mb-2 md:mb-0"
+          className="text-xl text-white opacity-30 sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy font-bold rotate-180 md:px-8 flex justify-start md:justify-center w-full md:w-auto mb-2 md:mb-0"
         >
           <span className="max-w-fit">
             {"0" + (activeSlide + 1)}/0{imageSectionData.length}
@@ -148,7 +148,7 @@ const ImageSection = () => {
         {/* Right Side - Solutions Label */}
         <div
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="text-xl text-white sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy opacity-50 font-bold rotate-180 md:px-8 text-primaryBlack flex justify-end items-end md:justify-center w-full md:w-auto mt-2 md:mt-0"
+          className="text-xl text-white sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy opacity-30 font-bold rotate-180 md:px-8 text-primaryBlack flex justify-end items-end md:justify-center w-full md:w-auto mt-2 md:mt-0"
         >
           <span className="max-w-fit">SOLUTIONS</span>
         </div>
@@ -170,13 +170,13 @@ const ImageSection = () => {
       {/* Call to Action */}
       <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-gradient-tb from-primaryBlack/50 to-primaryBlack">
         {" "}
-        <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
-          <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
+        <span className="relative bottom-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
+          <p className="text-sm sm:text-base md:text-lg relative">HOP ON A CALL</p>
           <a
             href="#connect"
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"
           >
-            <FaLongArrowAltRight className="group-hover:translate-y-1 rotate-90 duration-300 text-sm sm:text-base" />
+            <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
           </a>
         </span>
       </div>

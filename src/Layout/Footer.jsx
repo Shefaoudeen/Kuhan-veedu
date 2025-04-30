@@ -83,15 +83,17 @@ const Footer = () => {
   };
 
   useGSAP(() => {
-    gsap.to("#main-text", {
-      y: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: "#main-text",
-        start: "top bottom",
-        markers: true,
-      },
-    });
+    gsap.to(
+      "#main-text",
+      {
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+          trigger: "#main-text",
+          start: "top bottom",
+        },
+      }
+    );
   }, []);
 
   return (
