@@ -175,8 +175,8 @@ const ImageSection = () => {
       {/* Call to Action */}
       <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-gradient-tb from-primaryBlack/50 to-primaryBlack">
         {" "}
-        <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
-          <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
+        <span className="relative bottom-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
+          <p className="text-sm sm:text-base md:text-lg relative">HOP ON A CALL</p>
           <a
             href="#connect"
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"

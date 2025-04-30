@@ -43,8 +43,6 @@ const OurStory = () => {
     gsap.to("#storydescription", {
       y: 0,
       opacity: 1,
-      duration: 0.8,
-      ease: "linear",
       scrollTrigger: {
         trigger: "#storydescription",
         start: "top center",
@@ -52,12 +50,12 @@ const OurStory = () => {
     });
 
     gsap.from("#verticalText", {
-      y: 100,
+      y: 250,
       ease: "none",
       scrollTrigger: {
         trigger: "#story",
         start: "top bottom",
-        end: "bottom top",
+        end: "bottom-=500 top",
         scrub: true,
       },
     });
@@ -73,7 +71,7 @@ const OurStory = () => {
           </div>
           <h1
             id="storyTitle"
-            className="font-semibold text-4xl leading-[150%] font-lato max-md:text-xl -translate-y-16 opacity-0"
+            className="font-semibold text-4xl leading-[150%] font-lato max-md:text-xl translate-y-16 opacity-0"
           >
             HOW DOES DECO DRIVE
             <span className="max-md:hidden">
@@ -83,16 +81,16 @@ const OurStory = () => {
           </h1>
           <p
             id="storydescription"
-            className="font-garet text-justify md:pr-20 text-lg max-md:text-sm -translate-y-16 opacity-0"
+            className="font-garet text-justify md:pr-20 text-lg max-md:text-sm translate-y-16 opacity-0"
           >
-            No fluff, no exaggeration — At Deco, we blend design, code, and
+            No fluff, no exaggeration. At Deco, we blend design, code, and
             innovation to craft seamless, high—performance digital experiences.
             From intuitive user interfaces and scalable applications to
             enterprise software and AI—powered solutions, we build products that
-            don’t just look great—they deliver results. With a sharp focus on
+            don’t just look great, they deliver results. With a sharp focus on
             scalability, automation, and emerging technologies, we help
-            businesses stay ahead in an ever-evolving digital landscape. Whether
-            you're launching something new or transforming an existing vision,
+            businesses stay ahead in an ever—evolving digital landscape. Whether
+            you are launching something new or transforming an existing vision,
             we turn bold ideas into powerful digital realities.
           </p>
           <div className="flex items-center gap-8">
@@ -107,7 +105,7 @@ const OurStory = () => {
         <div
           id="verticalText"
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="font-aboreto text-6xl text-end flex flex-col gap-8 max-md:hidden -translate-y-28"
+          className="font-aboreto text-6xl text-end flex flex-col gap-8 max-md:hidden -translate-y-10"
         >
           <h1>OUR STORY AND</h1>
           <h1>WHAT WE DO</h1>

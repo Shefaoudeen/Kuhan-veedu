@@ -94,7 +94,6 @@ const Footer = () => {
         scrollTrigger: {
           trigger: "#main-text",
           start: "top bottom",
-          markers: true,
         },
       }
     );
