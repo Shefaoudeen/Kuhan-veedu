@@ -76,7 +76,7 @@ const ImageSection = () => {
     // Inside your useGSAP hook where you create the triggers
     const triggers = imageSectionData.map((_, index) => {
       const isLastSlide = index === imageSectionData.length - 1;
-
+      
       return ScrollTrigger.create({
         trigger: `#slide-${index}`,
         start: isMobile ? 
@@ -90,11 +90,12 @@ const ImageSection = () => {
       });
     });
 
+
     setIsReady(true);
 
     return () => {
       mainTrigger?.kill();
-      triggers.forEach((trigger) => trigger.kill());
+      triggers.forEach(trigger => trigger.kill());
     };
   }, [isMobile]); // Re-run when screen size changes
 
@@ -125,7 +126,7 @@ const ImageSection = () => {
       <div
         ref={overlayRef}
         className="fixed inset-0 flex flex-col md:flex-row  items-center justify-between w-full px-4 py-6 md:py-10 md:p-0 z-[5] pointer-events-none"
-        // Both reduced z-index and explicitly disable pointer events
+      // Both reduced z-index and explicitly disable pointer events
       >
         {/* Left Side - Slide Counter */}
         <div
@@ -144,7 +145,7 @@ const ImageSection = () => {
         {/* Center - Title Section */}
         <div
           ref={titleRef}
-          className="flex flex-col items-center justify-center px-3 py-2 md:py-0 "
+          className="flex flex-col items-center justify-center px-3 py-2 md:py-0 max-md:mt-10"
         >
           <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl drop-shadow-lg font-aboreto text-center text-white max-w-[95%]">
             {imageSectionData[activeSlide].title}
@@ -185,7 +186,7 @@ const ImageSection = () => {
         <span className="z-50 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
           <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
           <button
-            onClick={() => goToContact()}
+          onClick={() => goToContact()}
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"
           >
             <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
