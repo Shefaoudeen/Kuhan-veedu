@@ -114,10 +114,10 @@ const Footer = () => {
     <div className="flex w-screen justify-center items-center bg-[#070707] text-white mt-10">
       <div
         ref={overlayRef}
-        className="fixed top-0 left-0 w-full h-screen bg-black z-[9999] translate-y-full"
+        className="fixed top-0 left-0 w-full h-screen bg-black z-[9999] translate-y-full "
       ></div>
       <div className="flex flex-col md:w-[80%] max-md:w-[90%] justify-center items-center">
-        <div className="flex flex-col w-full justify-center items-center md:h-[125vh] gap-16">
+        <div className="flex flex-col w-full justify-center items-center md:h-[125vh] gap-16 max-md:py-[5vh]">
           <div
             id="main-text"
             className="text-6xl text-center  -translate-y-16 font-aboreto flex flex-col gap-4 max-md:text-xl"
@@ -126,7 +126,7 @@ const Footer = () => {
             <h1>Let's Talk</h1>
           </div>
           <div className="w-full">
-            <div className="md:px-20 flex flex-col gap-12">
+            <div className="md:px-20 flex flex-col gap-12 max-md:gap-8">
               <div className="flex max-md:flex-col gap-8">
                 <div className="relative md:w-[50%]">
                   <input
@@ -177,7 +177,7 @@ const Footer = () => {
                   We'd love to hear more about your project
                 </label>
               </div>
-              <div className="flex items-center justify-center gap-2 md:pl-[150px]">
+              <div className="flex items-center justify-center gap-2  md:pl-[150px]">
                 <div className="bg-white text-black w-[25px] h-[25px] flex items-center justify-center rounded-sm">
                   {num1}
                 </div>
@@ -197,7 +197,7 @@ const Footer = () => {
                   {isCorrect}
                 </div>
               </div>
-              <div className="min-w-[250px] text-center -mt-8 md:hidden">
+              <div className="min-w-[250px] text-center md:hidden">
                 {isCorrect}
               </div>
               <div className="flex justify-center">
@@ -209,10 +209,10 @@ const Footer = () => {
           </div>
         </div>
         <div
-          className="flex flex-col  h-screen w-full items-center justify-between"
+          className="flex flex-col  md:h-screen w-full items-center justify-between"
           id="connect"
         >
-          <div className="w-full flex flex-col justify-center gap-4 items-center py-8 text-center">
+          <div className="w-full flex flex-col justify-center md:gap-4 items-center py-4 text-center">
             <div>
               <h1 className="text-xl font-aboreto">Ready to work together?</h1>
             </div>
@@ -240,7 +240,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex flex-col w-screen  font-lato flex-1 md:hidden">
-              <div className="flex w-full items-start  flex-col gap-8 p-12 text-sm">
+              <div className="flex w-full items-start  flex-col gap-4 px-12 py-8 text-sm">
                 <div className="flex  justify-center gap-4 items-center">
                   <MapPin size={24} color="#ffffff" />
                   <h1>Puducherry / Bangalore</h1>
@@ -255,8 +255,8 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="md:hidden">
-              <img src={HalfLogo} alt="" />
+            <div className="hidden">
+              <img src={HalfLogo} alt="" className="scale-[80%]" />
             </div>
           </div>
 
@@ -264,7 +264,7 @@ const Footer = () => {
             <TextHoverEffect text="DeCo" />
           </div>
           <div className="flex w-full font-garet md:justify-between py-5 items-center max-md:justify-around">
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4 items-center max-md:hidden">
               <div onClick={scrollToTopWithOverlay} className="cursor-pointer">
                 <div className="border hover:border-slate-500 rounded-full">
                   <ChevronUp />

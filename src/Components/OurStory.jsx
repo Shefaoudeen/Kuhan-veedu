@@ -11,7 +11,7 @@ const OurStory = () => {
 
   useGSAP(() => {
     gsap.to(".story-title1", {
-      translateX: -10,
+      translateX: 0,
       duration: 0.8,
       ease: "linear",
       scrollTrigger: {
@@ -21,7 +21,7 @@ const OurStory = () => {
     });
 
     gsap.to(".story-title2", {
-      translateX: 10,
+      translateX: 0,
       duration: 0.8,
       ease: "linear",
       scrollTrigger: {
@@ -64,7 +64,7 @@ const OurStory = () => {
 
   return (
     <div id="storyblock">
-      <div className="h-screen flex max-md:min-h-screen max-md:flex-col gap-12 justify-center items-center bg-[#f5f5f5] sticky top-0">
+      <div className="h-screen flex max-md:min-h-screen -my-1 max-md:flex-col gap-12 justify-center items-center bg-[#f5f5f5] sticky top-0">
         <div id="story" className="md:w-[60%] max-md:px-8 flex flex-col gap-8">
           <div className="font-aboreto text-2xl text-center flex flex-col gap-4 md:hidden">
             <h1 className="story-title1">OUR STORY AND</h1>
@@ -72,7 +72,7 @@ const OurStory = () => {
           </div>
           <h1
             id="storyTitle"
-            className="font-semibold text-4xl leading-[150%] font-lato max-md:text-xl translate-y-16 opacity-0"
+            className="font-semibold text-4xl max-md:text-justify leading-[150%] font-lato max-md:text-xl translate-y-16 opacity-0"
           >
             HOW DOES DECO DRIVE
             <span className="max-md:hidden">
@@ -97,7 +97,10 @@ const OurStory = () => {
           <div className="flex items-center gap-8">
             <h1 className="text-xl font-[500] font-lato">SOLUTIONS</h1>
             <div>
-              <button onClick={() => goToContact()} className="bg-black p-4 rounded-full text-white group">
+              <button
+                onClick={() => goToContact()}
+                className="bg-black p-4 rounded-full text-white group"
+              >
                 <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
               </button>
             </div>
