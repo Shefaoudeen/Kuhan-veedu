@@ -277,7 +277,7 @@ const Footer = () => {
                 Back Top
               </div>
             </div>
-            <div className="md:text-center max-md:text-sm">
+            <div className="md:text-center max-md:text-sm font-garet text-sm text-stone-400">
               2025 © DeCo. All rights resevered.
             </div>
             <div className="flex gap-4 max-md:hidden">
