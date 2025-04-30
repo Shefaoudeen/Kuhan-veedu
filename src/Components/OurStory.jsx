@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import StrongBrand from "./StrongBrand";
+import { goToContact } from "../utils";
 
 const OurStory = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -96,7 +97,7 @@ const OurStory = () => {
           <div className="flex items-center gap-8">
             <h1 className="text-xl font-[500] font-lato">SOLUTIONS</h1>
             <div>
-              <button className="bg-black p-4 rounded-full text-white group">
+              <button onClick={() => goToContact()} className="bg-black p-4 rounded-full text-white group">
                 <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
               </button>
             </div>
