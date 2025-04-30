@@ -80,6 +80,7 @@ const DecoApproach = () => {
 
     const animations = [
       { selector: "#decoApproach-text", from: { opacity: 0, x: -70 } },
+      { selector: "#decoApproach-text-2", from: { opacity: 0, y: -70 } },
       { selector: "#number-text", from: { opacity: 0, x: 70 } },
     ];
 
@@ -103,11 +104,18 @@ const DecoApproach = () => {
       ref={mainRef}
       className="overflow-hidden md:overflow-auto relative w-screen md:px-5 lg:px-20 flex md:mt-0 bg-white"
     >
-      <div className="relative z-10 h-screen w-screen flex items-center justify-between">
+      <div className="relative z-50 h-screen w-screen flex flex-col md:flex-row items-center justify-center md:justify-between">
         <h2
           id="decoApproach-text"
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="text-2xl md:text-5xl lg:text-8xl font-light min-w-[23vw] md:min-w-[20vw]  text-center font-aboreto rotate-180 px-8 text-primaryBlack"
+          className="text-2xl hidden md:block md:text-5xl lg:text-8xl font-light min-w-[23vw] md:min-w-[20vw]  text-center font-aboreto rotate-180 px-8 text-primaryBlack"
+        >
+          The Deco Approach
+        </h2>
+
+        <h2
+          id="decoApproach-text-2"
+          className="absolute text-2xl pt-10 top-20 md:hidden font-bold min-w-[23vw] md:min-w-[20vw]  text-center font-aboreto px-8 text-primaryBlack"
         >
           The Deco Approach
         </h2>
@@ -118,8 +126,8 @@ const DecoApproach = () => {
           className="absolute left-0 top-0 min-h-screen z-10 bg-white min-w-[20vw] origin-top"
         /> */}
 
-        <section className="space-y-4 md:space-y-10 max-w-[45vw]">
-          <div className="space-y-2 md:space-y-3">
+        <section className="space-y-4 md:space-y-10 md:max-w-[45vw]">
+          <div className="space-y-6 md:space-y-3">
             {approachSteps.map((step, index) => (
               <h3
                 key={index}
@@ -128,8 +136,8 @@ const DecoApproach = () => {
                   index === currentStep
                     ? "font-aboreto text-black"
                     : index < currentStep
-                    ? "font-lato text-black/70 scale-[85%]"
-                    : "font-lato text-black/40 scale-[85%]"
+                    ? "font-lato text-black/70 md:scale-[85%]"
+                    : "font-lato text-black/40 md:scale-[85%]"
                 }  text-2xl md:text-4xl lg:text-4xl font-extrabold text-center transition-all duration-300`}
               >
                 {step}
@@ -140,7 +148,7 @@ const DecoApproach = () => {
 
         <div
           id="number-text"
-          className="space-y-4 md:space-y-10 min-w-[23] max-w-[23vw] px-2 lg:min-w-[20vw]"
+          className="hidden  md:block space-y-4 md:space-y-10 min-w-[23] max-w-[23vw] px-2 lg:min-w-[20vw]"
         >
           <div
             ref={numberRef}

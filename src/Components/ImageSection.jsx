@@ -38,8 +38,11 @@ const ImageSection = () => {
 
     const mainTrigger = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: "+=400 bottom",
-      end: "bottom-=400 bottom",
+      start: isMobile ? 'top 90%' : '+=400 bottom',
+      end: isMobile ? 'bottom+=50% top' : 'bottom-=200 bottom',
+
+
+      // markers: true,
       onEnter: () =>
         gsap.to(overlayRef.current, {
           autoAlpha: 1,
@@ -69,20 +72,29 @@ const ImageSection = () => {
     });
 
     // Adjust scroll trigger based on screen size
-    imageSectionData.forEach((_, index) => {
-      ScrollTrigger.create({
+    // Inside your useGSAP hook where you create the triggers
+    const triggers = imageSectionData.map((_, index) => {
+      const isLastSlide = index === imageSectionData.length - 1;
+      
+      return ScrollTrigger.create({
         trigger: `#slide-${index}`,
-        start: isMobile ? "top 40%" : "top 60%",
-        end: isMobile ? "bottom 60%" : "bottom 40%",
+        start: isMobile ? 
+          (isLastSlide ? "top 80%" : "top 70%") : 
+          "top 60%",
+        end: isMobile ? 
+          (isLastSlide ? "bottom 20%" : "bottom 30%") : 
+          "bottom 40%",
         onEnter: () => setActiveSlide(index),
         onEnterBack: () => setActiveSlide(index),
       });
     });
 
+
     setIsReady(true);
 
     return () => {
       mainTrigger?.kill();
+      // triggers.forEach(trigger => trigger.kill());
     };
   }, [isMobile]); // Re-run when screen size changes
 
@@ -113,7 +125,7 @@ const ImageSection = () => {
       <div
         ref={overlayRef}
         className="fixed inset-0 flex flex-col md:flex-row  items-center justify-between w-full px-4 py-6 md:py-10 md:p-0 z-[5] pointer-events-none"
-        // Both reduced z-index and explicitly disable pointer events
+      // Both reduced z-index and explicitly disable pointer events
       >
         {/* Left Side - Slide Counter */}
         <div
@@ -122,7 +134,7 @@ const ImageSection = () => {
             lineHeight: "1",
             letterSpacing: "0.1em",
           }}
-          className="text-xl text-white opacity-30 sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy font-bold rotate-180 md:px-8 flex justify-start md:justify-center w-full md:w-auto mb-2 md:mb-0"
+          className="text-2xl text-white opacity-50 md:opacity-30 sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy font-bold rotate-180 md:px-8 flex justify-start md:justify-center w-full md:w-auto mb-2 md:mb-0"
         >
           <span className="max-w-fit">
             {"0" + (activeSlide + 1)}/0{imageSectionData.length}
@@ -148,7 +160,7 @@ const ImageSection = () => {
         {/* Right Side - Solutions Label */}
         <div
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="text-xl text-white sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy opacity-30 font-bold rotate-180 md:px-8 text-primaryBlack flex justify-end items-end md:justify-center w-full md:w-auto mt-2 md:mt-0"
+          className="text-2xl opacity-50 md:opacity-30 text-white sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy font-bold rotate-180 md:px-8 text-primaryBlack flex justify-end items-end md:justify-center w-full md:w-auto mt-2 md:mt-0"
         >
           <span className="max-w-fit">SOLUTIONS</span>
         </div>

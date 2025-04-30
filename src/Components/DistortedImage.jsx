@@ -234,7 +234,7 @@ const DistortedImage = ({ image }) => {
           perspective: "1200px",
           transformStyle: "preserve-3d",
         }}
-        className="h-[45vh] mt-32 md:mt-0 sm:h-[50vh] md:w-[60vw] md:h-[200px] flex items-center justify-center"
+        className="h-[250px] mt-32 md:mt-0 sm:h-[50vh] md:w-[60vw] md:h-[200px] flex items-center justify-center"
       >
         <img
           src={image}
