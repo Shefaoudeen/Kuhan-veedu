@@ -49,3 +49,9 @@ input:-webkit-autofill {
   -webkit-text-fill-color: white !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+}

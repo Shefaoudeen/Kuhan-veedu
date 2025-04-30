@@ -84,22 +84,17 @@ const DecoApproach = () => {
     ];
 
     animations.forEach(({ selector, from }) => {
-      gsap.fromTo(
-        selector,
-        from,
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: mainRef.current,
-            start: "top center",
-          },
-        }
-      );
+      gsap.fromTo(selector, from, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: mainRef.current,
+          start: "top center",
+        },
+      });
     });
-
   }, []);
 
   return (
@@ -108,7 +103,7 @@ const DecoApproach = () => {
       ref={mainRef}
       className="overflow-hidden md:overflow-auto relative w-screen md:px-5 lg:px-20 flex md:mt-0 bg-white"
     >
-      <div className="relative z-[1000] h-screen w-screen flex items-center justify-between">
+      <div className="relative z-10 h-screen w-screen flex items-center justify-between">
         <h2
           id="decoApproach-text"
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
@@ -129,21 +124,24 @@ const DecoApproach = () => {
               <h3
                 key={index}
                 ref={(el) => (stepsRefs.current[index] = el)}
-                className={`${index === currentStep
-                  ? "font-aboreto text-black"
-                  : index < currentStep
+                className={`${
+                  index === currentStep
+                    ? "font-aboreto text-black"
+                    : index < currentStep
                     ? "font-lato text-black/70 scale-[85%]"
                     : "font-lato text-black/40 scale-[85%]"
-                  }  text-2xl md:text-4xl lg:text-4xl font-extrabold text-center transition-all duration-300`}
+                }  text-2xl md:text-4xl lg:text-4xl font-extrabold text-center transition-all duration-300`}
               >
                 {step}
               </h3>
             ))}
           </div>
-
         </section>
 
-        <div id="number-text" className="space-y-4 md:space-y-10 min-w-[23] max-w-[23vw] px-2 lg:min-w-[20vw]">
+        <div
+          id="number-text"
+          className="space-y-4 md:space-y-10 min-w-[23] max-w-[23vw] px-2 lg:min-w-[20vw]"
+        >
           <div
             ref={numberRef}
             className="font-lato text-white text-6xl md:text-9xl font-extrabold text-center text-outline"
@@ -172,7 +170,6 @@ const DecoApproach = () => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
