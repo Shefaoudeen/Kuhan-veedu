@@ -99,7 +99,7 @@ const OurStory = () => {
             <h1 className="text-xl font-[500] font-lato">SOLUTIONS</h1>
             <div>
               <button className="bg-black p-4 rounded-full text-white group">
-                <FaLongArrowAltRight className="group-hover:translate-x-1 duration-300" />
+                <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
               </button>
             </div>
           </div>

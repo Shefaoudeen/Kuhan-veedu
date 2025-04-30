@@ -167,7 +167,7 @@ const DecoApproach = () => {
                 href="#connect"
                 className="bg-black p-3 sm:p-4 rounded-full text-white group mt-2 sm:mt-0"
               >
-                <FaLongArrowAltRight className="group-hover:translate-y-1 rotate-90 duration-300 text-sm sm:text-base" />
+                <FaLongArrowAltRight className=" group-hover:rotate-90 duration-300 text-sm sm:text-base" />
               </a>
             </div>
           </div>

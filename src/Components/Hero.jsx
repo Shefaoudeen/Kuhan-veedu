@@ -61,20 +61,20 @@ const Hero = () => {
 
       {/* Hero Text Content */}
       <div className="z-50 flex flex-col items-center mt-10 max-md:gap-2 max-md:mb-[30vh]">
-        <h1 className="font-aboreto font-[500] text-7xl max-md:text-2xl">
+        <h1 className="font-aboreto  text-8xl max-md:text-2xl">
           INNOVATING AT THE
         </h1>
         <div className="flex justify-center gap-8 md:mt-6">
-          <h1 className="font-aboreto font-[500] text-7xl max-md:text-2xl">
+          <h1 className="font-aboreto  text-8xl max-md:text-2xl">
             INTERSECTION OF
           </h1>
-          <p className="font-garet max-w-[35%] text-start max-md:hidden">
-            Great products are built where design meets code with strategy. At
-            Deco, we create seamless digital experiences that don’t just look
-            good but perform exceptionally.
-          </p>
+          <div className="flex justify-center flex-col font-garet text-sm max-w-[35%] text-start max-md:hidden -ml-2">
+            <p>Great products are built where design meets code with strategy.</p> 
+            <p>At Deco, we create seamless digital experiences that don’t just </p>
+            <p>look good but perform exceptionally.</p>
+          </div>
         </div>
-        <h1 className="font-aboreto font-[600] text-7xl max-md:text-3xl md:mt-6">
+        <h1 className="font-aboreto text-8xl max-md:text-3xl md:mt-6">
           DESIGN & CODE
         </h1>
       </div>
