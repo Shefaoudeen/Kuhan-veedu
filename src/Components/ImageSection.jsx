@@ -121,7 +121,7 @@ const ImageSection = () => {
   }, [activeSlide, isReady]);
 
   return (
-    <div ref={sectionRef} className="relative bg-primaryBlack " id="solutions">
+    <div ref={sectionRef} className="relative bg-primaryBlack" id="solutions">
       <div
         ref={overlayRef}
         className="fixed inset-0 flex flex-col md:flex-row  items-center justify-between w-full px-4 py-6 md:py-10 md:p-0 z-[5] pointer-events-none"
@@ -144,7 +144,7 @@ const ImageSection = () => {
         {/* Center - Title Section */}
         <div
           ref={titleRef}
-          className="flex flex-col items-center justify-center px-3 py-2 md:py-0"
+          className="flex flex-col items-center justify-center px-3 py-2 md:py-0 max-md:mt-10"
         >
           <h2 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl drop-shadow-lg font-aboreto text-center text-white max-w-[95%]">
             {imageSectionData[activeSlide].title}
@@ -172,7 +172,7 @@ const ImageSection = () => {
           <div
             id={`slide-${index}`}
             key={index}
-            className="min-h-[50vh] sm:min-h-[60vh] flex flex-col justify-center md:min-h-screen mb-12 md:mb-32 overflow-x-hidden"
+            className="min-h-[50vh] sm:min-h-[50vh] flex flex-col justify-center md:min-h-screen mb-12 md:mb-32 overflow-x-hidden"
           >
             <DistortedImage image={section.image} />
           </div>
@@ -182,13 +182,13 @@ const ImageSection = () => {
       {/* Call to Action */}
       <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center bg-gradient-tb from-primaryBlack/50 to-primaryBlack">
         {" "}
-        <span className="relative bottom-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
-          <p className="text-sm sm:text-base md:text-lg relative">HOP ON A CALL</p>
+        <span className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
+          <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
           <a
             href="#connect"
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"
           >
-            <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
+            <FaLongArrowAltRight className="group-hover:translate-y-1 rotate-90 duration-300 text-sm sm:text-base" />
           </a>
         </span>
       </div>

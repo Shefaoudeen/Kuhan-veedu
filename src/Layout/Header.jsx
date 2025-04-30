@@ -6,17 +6,35 @@ import { FiShare2 } from "react-icons/fi";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { gsap } from "gsap";
 
+const handleCopyToClipboard = (setMessageVisible) => {
+  const url = "https://teamdeco.in/";
+
+  navigator.clipboard
+    .writeText(url)
+    .then(() => {
+      // Show custom success message
+      setMessageVisible(true);
+      // Hide the message after 2 seconds
+      setTimeout(() => {
+        setMessageVisible(false);
+      }, 1000);
+    })
+    .catch((err) => {
+      console.error("Error copying text to clipboard", err);
+    });
+};
+
 const navLinks = [
   { title: "PORTFOLIO", link: "#portfolio" },
   { title: "STORY", link: "#storyblock" },
   { title: "SOLUTIONS", link: "#solutions" },
-  /*{ title: "VOICES", link: "#voices" },*/
   { title: "APPROACH", link: "#approach" },
   { title: "CONNECT", link: "#connect" },
 ];
 
 const Header = () => {
   const [menuClicked, setMenuClicked] = useState(false);
+  const [messageVisible, setMessageVisible] = useState(false); // Track visibility of custom message
   const listRefs = useRef([]);
   const connectCardRef = useRef(null);
   const overlayRef = useRef(null);
@@ -54,10 +72,9 @@ const Header = () => {
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.4,
           ease: "power2.out",
-        },
-        "+=0.2"
+        }
       );
     } else {
       html.style.overflow = "auto";
@@ -126,7 +143,7 @@ const Header = () => {
         {menuClicked && (
           <div className="fixed top-0 left-0 w-full h-full bg-black text-white z-[999999] flex flex-col">
             <div className="flex justify-between items-center p-5">
-              <a href="#">
+              <a href="http://teamdeco.in/">
                 <img src={DeCoLogo} alt="Logo" className="w-[80px] invert" />
               </a>
               <X
@@ -163,22 +180,37 @@ const Header = () => {
                     <h1>+91 84387 16946</h1>
                     <h1>+91 88254 60719</h1>
                     <h1 className="font-garet">
-                      reachdeco<span className="font-lato">@</span>gmail.com
+                      reachus<span className="font-lato">@</span>teamdeco.in
                     </h1>
                   </div>
                   <div className="flex gap-4 text-gray-400 w-full justify-between px-8">
-                    <FiShare2
-                      className="hover:text-white transition"
-                      size={24}
-                    />
-                    <FaLinkedin
-                      className="hover:text-white transition"
-                      size={24}
-                    />
-                    <FaWhatsapp
-                      className="hover:text-white transition"
-                      size={24}
-                    />
+                    <div>
+                      <FiShare2
+                        className="hover:text-white transition cursor-pointer"
+                        size={24}
+                        onClick={() => handleCopyToClipboard(setMessageVisible)}
+                      />
+                    </div>
+                    <a
+                      href="https://www.linkedin.com/in/team-deco"
+                      target="_blank"
+                      className="cursor-pointer"
+                    >
+                      <FaLinkedin
+                        className="hover:text-white transition"
+                        size={24}
+                      />
+                    </a>
+                    <a
+                      className="cursor-pointer"
+                      href="https://wa.me/+918825460719?text=Hello%2C%20What%20Services%20You%20Offer"
+                      target="_blank"
+                    >
+                      <FaWhatsapp
+                        className="hover:text-white transition"
+                        size={24}
+                      />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -188,12 +220,14 @@ const Header = () => {
 
         {/* Top Bar */}
         <div>
-          <img src={DeCoLogo} alt="Logo" className="w-[80px]" />
+          <a href="http://teamdeco.in/">
+            <img src={DeCoLogo} alt="Logo" className="w-[80px]" />
+          </a>
         </div>
         <div className="flex items-center gap-8 text-lg font-lato">
           <div
             className="max-md:hidden cursor-pointer"
-            onClick={() => setMenuClicked(true)}
+            onClick={(e) => handleNavClick(e, "#connect")}
           >
             CONTACT
           </div>
@@ -209,6 +243,15 @@ const Header = () => {
           />
         </div>
       </div>
+
+      {/* Custom Message Modal */}
+      {messageVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white text-center p-5 rounded-full shadow-lg text-xl">
+            <p className="text-black font-lato">URL copied to clipboard!</p>
+          </div>
+        </div>
+      )}
     </>
   );
 };
