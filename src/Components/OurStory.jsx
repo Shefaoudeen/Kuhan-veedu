@@ -72,7 +72,7 @@ const OurStory = () => {
           </div>
           <h1
             id="storyTitle"
-            className="font-semibold text-4xl leading-[150%] font-lato max-md:text-xl translate-y-16 opacity-0"
+            className="font-semibold text-4xl max-md:text-justify leading-[150%] font-lato max-md:text-xl translate-y-16 opacity-0"
           >
             HOW DOES DECO DRIVE
             <span className="max-md:hidden">
@@ -97,7 +97,10 @@ const OurStory = () => {
           <div className="flex items-center gap-8">
             <h1 className="text-xl font-[500] font-lato">SOLUTIONS</h1>
             <div>
-              <button onClick={() => goToContact()} className="bg-black p-4 rounded-full text-white group">
+              <button
+                onClick={() => goToContact()}
+                className="bg-black p-4 rounded-full text-white group"
+              >
                 <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
               </button>
             </div>
