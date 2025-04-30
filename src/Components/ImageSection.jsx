@@ -40,8 +40,6 @@ const ImageSection = () => {
       trigger: sectionRef.current,
       start: "+=400 bottom",
       end: "bottom-=400 bottom",
-
-      markers: true,
       onEnter: () =>
         gsap.to(overlayRef.current, {
           autoAlpha: 1,
@@ -129,7 +127,7 @@ const ImageSection = () => {
             lineHeight: "1",
             letterSpacing: "0.1em",
           }}
-          className="text-xl sm:text-3xl md:text-5xl lg:text-[7.3rem] font-lato font-bold rotate-180 md:px-8 text-outline-small md:text-outline flex justify-start md:justify-center w-full md:w-auto mb-2 md:mb-0"
+          className="text-xl text-white opacity-50 sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy font-bold rotate-180 md:px-8 flex justify-start md:justify-center w-full md:w-auto mb-2 md:mb-0"
         >
           <span className="max-w-fit">
             {"0" + (activeSlide + 1)}/0{imageSectionData.length}
@@ -155,7 +153,7 @@ const ImageSection = () => {
         {/* Right Side - Solutions Label */}
         <div
           style={{ writingMode: "vertical-rl", lineHeight: "1" }}
-          className="text-xl sm:text-3xl md:text-5xl lg:text-[7.3rem] font-lato font-bold rotate-180 md:px-8 text-primaryBlack text-outline-small md:text-outline flex justify-end items-end md:justify-center w-full md:w-auto mt-2 md:mt-0"
+          className="text-xl text-white sm:text-3xl md:text-5xl lg:text-[7.3rem] font-tommy opacity-50 font-bold rotate-180 md:px-8 text-primaryBlack flex justify-end items-end md:justify-center w-full md:w-auto mt-2 md:mt-0"
         >
           <span className="max-w-fit">SOLUTIONS</span>
         </div>

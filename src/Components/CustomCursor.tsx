@@ -78,7 +78,7 @@ export default function MinimalCustomCursor() {
         top: cursorPosition.y - 17.5,
         pointerEvents: "none",
         zIndex: 9999,
-        transform: `scale(${isHovering ? 1.5 : 1})`,
+        transform: `scale(${isHovering ? 2.5 : 1})`,
         transition: "transform 0.2s ease-out",
       }}
     />
