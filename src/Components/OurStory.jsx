@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import StrongBrand from "./StrongBrand";
 import { goToContact } from "../utils";
+import RevealOverlay from "./RevealOverlay";
 
 const OurStory = () => {
   gsap.registerPlugin(ScrollTrigger);
+  const revealOverlayRef = useRef(null);
 
   useGSAP(() => {
     gsap.to(".story-title1", {
@@ -63,6 +65,9 @@ const OurStory = () => {
   });
 
   return (
+    <>
+     <RevealOverlay ref={revealOverlayRef} />
+   
     <div id="storyblock">
       <div className="h-screen flex max-md:min-h-screen -my-1 max-md:flex-col gap-12 justify-center items-center bg-[#f5f5f5] sticky top-0">
         <div id="story" className="md:w-[60%] max-md:px-8 flex flex-col gap-8">
@@ -98,7 +103,7 @@ const OurStory = () => {
             <h1 className="text-xl font-[500] font-lato">SOLUTIONS</h1>
             <div>
               <button
-                onClick={() => goToContact()}
+                onClick={() => revealOverlayRef.current.revealTo("#solutions")}
                 className="bg-black p-4 rounded-full text-white group"
               >
                 <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />
@@ -117,6 +122,7 @@ const OurStory = () => {
       </div>
       <StrongBrand />
     </div>
+    </>
   );
 };
 

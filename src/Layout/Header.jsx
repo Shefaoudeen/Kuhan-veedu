@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { FiShare2 } from "react-icons/fi";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { gsap } from "gsap";
+import RevealOverlay from "../Components/RevealOverlay";
 
 const handleCopyToClipboard = (setMessageVisible) => {
   const url = "https://teamdeco.in/";
@@ -97,46 +98,15 @@ const Header = () => {
   const handleNavClick = (e, target) => {
     e.preventDefault();
 
-    gsap.to(overlayRef.current, {
-      y: 0,
-      duration: 2,
-      ease: "power2.inOut",
-      onComplete: () => {
-        // Delay scroll until after menu is hidden
-        setMenuClicked(false);
+    setMenuClicked(false)
+    overlayRef.current.revealTo(target);
 
-        // Wait for next paint to ensure element exists
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            const targetElement = document.querySelector(target);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: "auto" });
-            }
-
-            // Animate overlay out
-            gsap.to(overlayRef.current, {
-              y: "-100%",
-              duration: 0.7,
-              delay: 0.2,
-              ease: "power2.inOut",
-              onComplete: () => {
-                gsap.set(overlayRef.current, { y: "100%" });
-              },
-            });
-          }, 200); // small delay to ensure menu closes and DOM updates
-        });
-      },
-    });
   };
 
   return (
     <>
       {/* Overlay Animation Div */}
-      <div
-        ref={overlayRef}
-        className="fixed top-0 left-0 w-full h-full bg-black z-[999998] pointer-events-none"
-        style={{ transform: "translateY(100%)" }}
-      ></div>
+      <RevealOverlay ref={overlayRef} />
 
       {/* Header */}
       <div className="w-full p-5 flex justify-between absolute top-0 left-0 z-50 bg-transparent">
@@ -184,13 +154,13 @@ const Header = () => {
                     </h1>
                   </div>
                   <div className="flex gap-4 text-gray-400 w-full justify-between px-8">
-                    <div>
+                    <button>
                       <FiShare2
                         className="hover:text-white transition cursor-pointer"
                         size={24}
                         onClick={() => handleCopyToClipboard(setMessageVisible)}
                       />
-                    </div>
+                    </button>
                     <a
                       href="https://www.linkedin.com/in/team-deco"
                       target="_blank"
@@ -225,22 +195,23 @@ const Header = () => {
           </a>
         </div>
         <div className="flex items-center gap-8 text-lg font-lato">
-          <div
+          <a
             className="max-md:hidden cursor-pointer"
             onClick={(e) => handleNavClick(e, "#connect")}
           >
             CONTACT
-          </div>
-          <div
+          </a>
+          <a
             className="max-md:hidden cursor-pointer"
             onClick={() => setMenuClicked(true)}
           >
             MENU
-          </div>
-          <MdMenu
-            onClick={() => setMenuClicked(true)}
-            className="hover:scale-150 duration-200 ease-linear cursor-pointer"
-          />
+          </a>
+          <button onClick={() => setMenuClicked(true)}>
+            <MdMenu
+              className="hover:scale-150 duration-200 ease-linear cursor-pointer"
+            />
+          </button>
         </div>
       </div>
 

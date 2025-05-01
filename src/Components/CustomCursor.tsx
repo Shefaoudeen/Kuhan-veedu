@@ -45,7 +45,7 @@ export default function MinimalCustomCursor() {
 
   // Update cursor position with easing effect
   useEffect(() => {
-    const cursorLag = 0.15; // Adjust for more or less lag (0.1 to 0.2 is usually good)
+    const cursorLag = 0.2; // Adjust for more or less lag (0.1 to 0.2 is usually good)
 
     const updateCursorPosition = () => {
       const dx = mousePosition.x - cursorPosition.x;
@@ -74,12 +74,13 @@ export default function MinimalCustomCursor() {
         backgroundColor: "#fff",
         mixBlendMode: "difference",
         position: "fixed",
-        left: cursorPosition.x - 17.5,
-        top: cursorPosition.y - 17.5,
+        left: cursorPosition.x,
+        top: cursorPosition.y,
         pointerEvents: "none",
         zIndex: 9999,
-        transform: `scale(${isHovering ? 2.5 : 1})`,
-        transition: "transform 0.2s ease-out",
+        transform: `translate(-50%, -50%) scale(${isHovering ? 2.5 : 1})`,
+        transition: "transform 0.1s ease-out",
+        cursor: "auto", // This ensures the default cursor remains visible
       }}
     />
   );
