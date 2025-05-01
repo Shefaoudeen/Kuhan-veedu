@@ -15,6 +15,9 @@ const ImageSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const slideTriggersRef = useRef([]);
+  const mainTriggerRef = useRef(null);
+
 
   // Check for mobile screen size
   useEffect(() => {
@@ -34,92 +37,48 @@ const ImageSection = () => {
 
   // GSAP animations
   useGSAP(() => {
-    // Force hide initially (important!)
+
+    // ✅ Kill only your component's triggers
+    slideTriggersRef.current.forEach(trigger => trigger.kill());
+    mainTriggerRef.current?.kill();
+
     gsap.set(overlayRef.current, { autoAlpha: 0 });
 
     const mainTrigger = ScrollTrigger.create({
       trigger: sectionRef.current,
-      start: isMobile ? 'top 90%' : '+=400 bottom',
-      end: isMobile ? 'bottom+=100% top' : 'bottom-=200 bottom',
-
-
-      // markers: true,
-      onEnter: () =>
-        gsap.to(overlayRef.current, {
-          autoAlpha: 1,
-          duration: 0.5,
-        }),
-      onLeave: () =>
-        gsap.to(overlayRef.current, {
-          autoAlpha: 0,
-          duration: 0.5,
-        }),
-      onEnterBack: () =>
-        gsap.to(overlayRef.current, {
-          autoAlpha: 1,
-          duration: 0.5,
-        }),
-      onLeaveBack: () =>
-        gsap.to(overlayRef.current, {
-          autoAlpha: 0,
-          duration: 0.5,
-        }),
-      onRefresh: (self) => {
-        const visible = self.isActive;
+      start: () => isMobile ? '+=300 bottom' : '+=400 bottom',
+      end: () => isMobile ? 'bottom bottom' : 'bottom-=200 bottom',
+      onEnter: () => gsap.to(overlayRef.current, { autoAlpha: 1, duration: 0.5 }),
+      onLeave: () => gsap.to(overlayRef.current, { autoAlpha: 0, duration: 0.5 }),
+      onEnterBack: () => gsap.to(overlayRef.current, { autoAlpha: 1, duration: 0.5 }),
+      onLeaveBack: () => gsap.to(overlayRef.current, { autoAlpha: 0, duration: 0.5 }),
+      onRefresh: (self) =>
         gsap.set(overlayRef.current, {
-          autoAlpha: visible ? 1 : 0,
-        });
-      },
+          autoAlpha: self.isActive ? 1 : 0,
+        }),
     });
+    mainTriggerRef.current = mainTrigger;
 
-    // Adjust scroll trigger based on screen size
-    // Inside your useGSAP hook where you create the triggers
     const triggers = imageSectionData.map((_, index) => {
-      const isLastSlide = index === imageSectionData.length - 1;
-      
       return ScrollTrigger.create({
         trigger: `#slide-${index}`,
-        start: isMobile ? 
-          (isLastSlide ? "top 80%" : "top 70%") : 
-          "top 60%",
-        end: isMobile ? 
-          (isLastSlide ? "bottom top" : "bottom 30%") : 
-          "bottom 40%",
+        start: () => isMobile ? "top 70%" : "top 60%",
+        end: () => isMobile ? "bottom 30%" : "bottom 40%",
+
         onEnter: () => setActiveSlide(index),
         onEnterBack: () => setActiveSlide(index),
       });
     });
-
+    slideTriggersRef.current = triggers;
 
     setIsReady(true);
 
     return () => {
-      mainTrigger?.kill();
-      triggers.forEach(trigger => trigger.kill());
+      mainTriggerRef.current?.kill();
+      slideTriggersRef.current.forEach(trigger => trigger.kill());
     };
-  }, [isMobile]); // Re-run when screen size changes
+  }, [isMobile]);
 
-  // Title animation
-  useGSAP(() => {
-    if (!isReady) return;
-
-    const tl = gsap.timeline();
-
-    if (titleRef.current.getAttribute("data-initialized") === "true") {
-      tl.set(titleRef.current, {
-        opacity: 0,
-        filter: "blur(5px)",
-        duration: 0.5,
-      }).to(titleRef.current, {
-        delay: 0.5,
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 0.8,
-      });
-    } else {
-      titleRef.current.setAttribute("data-initialized", "true");
-    }
-  }, [activeSlide, isReady]);
 
   return (
     <div ref={sectionRef} className="relative bg-primaryBlack" id="solutions">
@@ -169,16 +128,16 @@ const ImageSection = () => {
 
       {/* Scrollable images */}
       <div className="relative md:pt-0">
-        {imageSectionData.map((section, index) => (
-          <div
-            id={`slide-${index}`}
-            key={index}
-            className="min-h-[50vh] sm:min-h-[50vh] flex flex-col justify-center md:min-h-screen mb-12 md:mb-32 overflow-x-hidden"
-          >
-            <DistortedImage image={section.image} />
-          </div>
-        ))}
-      </div>
+      {imageSectionData.map((section, index) => (
+        <div
+          id={`slide-${index}`}
+          key={index}
+          className="min-h-[60vh] sm:min-h-[70vh] md:min-h-screen flex flex-col justify-center mb-12 md:mb-32 overflow-x-hidden"
+        >
+          <DistortedImage image={section.image} />
+        </div>
+      ))}
+    </div>
 
       {/* Call to Action */}
       <div className="h-auto py-12 md:py-20 relative z-50 flex justify-center items-center">
@@ -186,7 +145,7 @@ const ImageSection = () => {
         <span className="z-50 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 py-8 sm:py-28 text-white">
           <p className="text-sm sm:text-base md:text-lg">HOP ON A CALL</p>
           <button
-          onClick={() => goToContact()}
+            onClick={() => goToContact()}
             className="bg-white p-3 sm:p-4 rounded-full text-black group mt-2 sm:mt-0"
           >
             <FaLongArrowAltRight className="group-hover:rotate-90 duration-300 text-sm sm:text-base" />

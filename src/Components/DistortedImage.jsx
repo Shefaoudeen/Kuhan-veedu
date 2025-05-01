@@ -223,56 +223,56 @@ const DistortedImage = ({ image }) => {
   }, []);
 
   return (
-    <div className="md:py-[250px] max-w-[88vw] relative overflow-hidden left-8 top-5 md:top-0 -rotate-12 md:left-20">
+    <div className="relative py-10 md:py-[250px] h-full max-w-[88vw] overflow-hidden left-8 top-5 md:top-0 -rotate-12 md:left-20">
+    <div
+      ref={containerRef}
+      style={{
+        margin: "0 auto",
+        position: "relative",
+        zIndex: 20,
+        transform: "translateZ(0)",
+        perspective: "1200px",
+        transformStyle: "preserve-3d",
+      }}
+      className="h-[40vh] md:h-[50vh] mt-10 md:mt-0 md:w-[60vw] flex items-center justify-center"
+    >
+      <img
+        src={image}
+        alt="Parabolic distortion effect"
+        crossOrigin="anonymous"
+        data-sampler="uSampler"
+        id="distorted-image"
+        className="opacity-0 absolute w-full min-h-[40vh] min-w-[100%] md:min-w-[140vw] object-center object-cover"
+      />
+
+      {/* CONNECT label that follows mouse */}
       <div
-        ref={containerRef}
+        ref={connectLabelRef}
+        className="absolute z-60 pointer-events-none bg-black bg-opacity-75 px-3 py-1 rounded-full"
         style={{
-          margin: "0 auto",
-          position: "relative",
-          zIndex: 20, // Higher z-index to ensure it's above the overlay
-          transform: "translateZ(0)",
-          perspective: "1200px",
-          transformStyle: "preserve-3d",
+          position: "absolute",
+          left: `${mousePosRef.current.x + 10}px`,
+          top: `${mousePosRef.current.y}px`,
+          opacity: 0,
+          transform: "translate(10px, -50%)",
         }}
-        className="h-[250px] mt-32 md:mt-0 sm:h-[50vh] md:w-[60vw] md:h-[200px] flex items-center justify-center"
       >
-        <img
-          src={image}
-          alt="Parabolic distortion effect"
-          crossOrigin="anonymous"
-          data-sampler="uSampler"
-          id="distorted-image"
-          className="opacity-0 absolute min-w-[140vw] md:w-full h-full object-center object-cover"
-        />
-
-        {/* CONNECT label that follows mouse */}
-        <div
-          ref={connectLabelRef}
-          className="absolute z-60 pointer-events-none bg-black bg-opacity-75 px-3 py-1 rounded-full"
-          style={{
-            position: "absolute",
-            left: `${mousePosRef.current.x + 10}px`,
-            top: `${mousePosRef.current.y}px`,
-            opacity: 0,
-            transform: "translate(10px, -50%)", // Position to the right with 10px gap, vertical center alignment
-          }}
-        >
-          <span className="text-white font-semibold text-sm whitespace-nowrap">
-            CONNECT
-          </span>
-        </div>
-
-        {/* Transparent hover capture layer */}
-        <a
-          className="absolute inset-0 z-50 cursor-pointer"
-          style={{
-            pointerEvents: "auto",
-            backgroundColor: "transparent",
-          }}
-          href="#connect"
-        />
+        <span className="text-white font-semibold text-sm whitespace-nowrap">
+          CONNECT
+        </span>
       </div>
+
+      {/* Transparent hover capture layer */}
+      <a
+        className="absolute inset-0 z-50 cursor-pointer"
+        style={{
+          pointerEvents: "auto",
+          backgroundColor: "transparent",
+        }}
+        href="#connect"
+      />
     </div>
+  </div>
   );
 };
 
