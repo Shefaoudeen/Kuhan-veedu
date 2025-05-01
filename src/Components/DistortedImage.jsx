@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const DistortedImage = ({ image }) => {
+const DistortedImage = ({ image, isMobile }) => {
   const containerRef = useRef(null);
   const planeRef = useRef(null);
   const scrollEffect = useRef(0);
@@ -210,7 +210,7 @@ const DistortedImage = ({ image }) => {
       containerRef.current,
       { scale: 0.8 },
       {
-        scale: 1.6,
+        scale: isMobile ? 1.6 :  1.4,
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top bottom",
@@ -220,7 +220,7 @@ const DistortedImage = ({ image }) => {
         ease: "none",
       }
     );
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="relative py-10 md:py-[250px] h-full max-w-[88vw] overflow-hidden left-8 top-5 md:top-0 -rotate-12 md:left-20">

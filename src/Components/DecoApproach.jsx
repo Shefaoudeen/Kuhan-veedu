@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { goToContact } from "../utils";
 gsap.registerPlugin(ScrollTrigger);
@@ -33,12 +33,35 @@ const DecoApproach = () => {
   const textRef = useRef(null);
   const [currentStep, setCurrentStep] = useState(0);
   const prevIndex = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const scrollTriggerRef = useRef(null);
 
-  useGSAP(() => {
-    ScrollTrigger.create({
+  // Handle mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Update ScrollTrigger when isMobile changes
+  useEffect(() => {
+    if (scrollTriggerRef.current) {
+      scrollTriggerRef.current.kill();
+    }
+
+    scrollTriggerRef.current = ScrollTrigger.create({
       trigger: mainRef.current,
       start: "top top",
-      end: "+=3000", // scroll distance in px (adjust as needed)
+      end: isMobile ? "+=1500" : "+=3000", // Adjusted scroll distance
       pin: true,
       scrub: true,
       onUpdate: (self) => {
@@ -53,13 +76,6 @@ const DecoApproach = () => {
           prevIndex.current = index;
           setCurrentStep(index);
 
-          // Animate number and text
-          // gsap.fromTo(
-          //   numberRef.current,
-          //   { opacity: 0, y: -20 },
-          //   { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
-          // );
-
           gsap.fromTo(
             textRef.current,
             { opacity: 0 },
@@ -69,16 +85,14 @@ const DecoApproach = () => {
       },
     });
 
-    // gsap.to("#decoApproach-text-overlay", {
-    //   minHeight: "0vh",
-    //   duration: 2,
-    //   ease: "power2.out",
-    //   scrollTrigger: {
-    //     trigger: mainRef.current,
-    //     start: "top center",
-    //   },
-    // });
+    return () => {
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+    };
+  }, [isMobile]);
 
+  useGSAP(() => {
     const animations = [
       { selector: "#decoApproach-text", from: { opacity: 0, x: -70 } },
       { selector: "#decoApproach-text-2", from: { opacity: 0, y: -70 } },
@@ -89,6 +103,7 @@ const DecoApproach = () => {
       gsap.fromTo(selector, from, {
         opacity: 1,
         x: 0,
+        y: 0,
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
@@ -116,19 +131,13 @@ const DecoApproach = () => {
 
         <h2
           id="decoApproach-text-2"
-          className="absolute text-2xl pt-10 top-20 md:hidden font-bold min-w-[23vw] md:min-w-[20vw]  text-center font-aboreto px-8 text-primaryBlack"
+          className="absolute text-2xl top-20 md:hidden font-bold min-w-[23vw] md:min-w-[20vw]  text-center font-aboreto px-8 text-primaryBlack"
         >
           The Deco Approach
         </h2>
 
-        {/* for deco approach text animation */}
-        {/* <div
-          id="decoApproach-text-overlay"
-          className="absolute left-0 top-0 min-h-screen z-10 bg-white min-w-[20vw] origin-top"
-        /> */}
-
         <section className="space-y-4 md:space-y-10 md:max-w-[45vw]">
-          <div className="space-y-6 md:space-y-3">
+          <div className="space-y-6">
             {approachSteps.map((step, index) => (
               <h3
                 key={index}
@@ -164,10 +173,6 @@ const DecoApproach = () => {
 
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 mt-10">
           <div className="flex flex-col justify-center font-garet items-center gap-10">
-            {/* <p className="text-center flex flex-col">
-              <span>Free consultation and 2 weeks of post deployment support,</span>
-              <span>because we care about your success.</span>
-            </p> */}
             <div className="flex flex-col justify-center sm:flex-row items-center gap-3">
               <p className="text-sm sm:text-base md:text-lg">SETUP A CALL</p>
               <button
